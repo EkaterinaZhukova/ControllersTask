@@ -17,14 +17,18 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
-
+- (void)prepareForReuse{
+    [super prepareForReuse];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.collection scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionLeft animated:false];
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.itemSize = CGSizeMake(100, 100);
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        
+
         UICollectionView * myCollection = [[UICollectionView alloc] initWithFrame:self.contentView.frame collectionViewLayout:flowLayout];
         [myCollection registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:collectionReuseCell];
         

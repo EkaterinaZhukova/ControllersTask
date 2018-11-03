@@ -98,6 +98,8 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
 }
+
+
 @end
 
 
@@ -114,7 +116,7 @@
     __weak typeof(vc) weakVC = vc;
     if(self.navigationController){
         vc.onCloseBlock = ^{
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         };
         [self.navigationController pushViewController:vc animated:YES];
         return;
