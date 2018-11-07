@@ -18,9 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
-- (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"View Will Appear");
-}
+
 - (IBAction)presentTableControllerView:(id)sender {
     TableCollectionViewController * tableCollectionVC = [TableCollectionViewController new];
     __weak typeof(self) weakSelf = self;
@@ -43,7 +41,6 @@
     __weak typeof(self) weakSelf = self;
     
     TableCollectionViewController * tableCollectionVC = [TableCollectionViewController new];
-    __weak typeof(self) weakTableCollectionVC  = self;
     
     [self addChildViewController:tableCollectionVC];
     [self.view addSubview:tableCollectionVC.view];
@@ -60,7 +57,6 @@
 
         } completion:^(BOOL finished) {
             [weakSelf.tableCollectionVC willMoveToParentViewController:nil];
-            
             [weakSelf.tableCollectionVC.view removeFromSuperview];
             [weakSelf.tableCollectionVC removeFromParentViewController];
         }];
