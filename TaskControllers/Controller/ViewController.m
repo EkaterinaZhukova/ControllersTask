@@ -26,8 +26,9 @@
     __weak typeof(self) weakSelf = self;
     __weak typeof(tableCollectionVC) weakTableCollectionVC = tableCollectionVC;
 
-    tableCollectionVC.onCreateSelectedIndex = ^(UIViewController * newSelectedIndexViewController) {
-        SelectedIndexViewController * vc = (SelectedIndexViewController*)newSelectedIndexViewController;
+    tableCollectionVC.onCreateSelectedIndex = ^(NSString * selectedIndex) {
+        SelectedIndexViewController * vc = [[SelectedIndexViewController alloc]init];
+        vc.currentIndexCount = selectedIndex;
             vc.onCloseBlock = ^{
                 [weakTableCollectionVC dismissViewControllerAnimated:YES completion:nil];
             };
@@ -49,8 +50,9 @@
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:tableCollectionVC];
     [nvc setNavigationBarHidden:TRUE];
-    tableCollectionVC.onCreateSelectedIndex = ^(UIViewController * newSelectedIndexViewController) {
-        SelectedIndexViewController * vc = (SelectedIndexViewController*)newSelectedIndexViewController;
+    tableCollectionVC.onCreateSelectedIndex = ^(NSString * selectedIndex) {
+        SelectedIndexViewController * vc = [[SelectedIndexViewController alloc]init];
+        vc.currentIndexCount = selectedIndex;
         vc.onCloseBlock = ^{
             [weakTableCollectionVC.navigationController popViewControllerAnimated:YES];
         };
@@ -76,8 +78,9 @@
     [UIView animateWithDuration:1 animations:^{
         weakTableCollectionVC.view.alpha = 1;
     }];
-    tableCollectionVC.onCreateSelectedIndex = ^(UIViewController * newSelectedIndexViewController) {
-        SelectedIndexViewController * vc = (SelectedIndexViewController*)newSelectedIndexViewController;
+    tableCollectionVC.onCreateSelectedIndex = ^(NSString * selectedIndex) {
+        SelectedIndexViewController * vc = [[SelectedIndexViewController alloc]init];
+        vc.currentIndexCount = selectedIndex;
         __weak typeof(vc)weakVC = vc;
         vc.onCloseBlock = ^{
             [UIView animateWithDuration:1 animations:^{

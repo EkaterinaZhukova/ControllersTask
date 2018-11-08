@@ -109,9 +109,9 @@
 
 @implementation TableCollectionViewController(CustomCellProtocol)
 
-- (void)showNewViewController:(nonnull UIViewController *)newViewController {
+- (void)showNewViewController:(nonnull NSString *)selectedIndex {
     if(self.onCreateSelectedIndex){
-        self.onCreateSelectedIndex(newViewController);
+        self.onCreateSelectedIndex(selectedIndex);
     }
 }
 

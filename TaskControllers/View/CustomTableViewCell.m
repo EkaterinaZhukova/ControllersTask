@@ -67,10 +67,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"select");
-    SelectedIndexViewController *vc = [[SelectedIndexViewController alloc]init];
-    vc.currentIndexCount = [NSString stringWithFormat:@"%ld",indexPath.row];
+    NSString * selectedIndex = [NSString stringWithFormat:@"%ld",indexPath.row];
     if(self.delegate){
-        [self.delegate showNewViewController:vc];
+        [self.delegate showNewViewController:selectedIndex];
     }
 }
 

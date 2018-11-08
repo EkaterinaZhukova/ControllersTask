@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ViewControllerFromCell <NSObject>
--(void) showNewViewController :(UIViewController*) newViewController;
+-(void) showNewViewController :(NSString*) selectedIndex;
 @end
 
 NS_ASSUME_NONNULL_END
