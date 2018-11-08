@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TableCollectionViewController : UIViewController
 
 @property(nonatomic,copy) dispatch_block_t onCloseBlock;
+@property (nonatomic, copy) void (^onCreateSelectedIndex)(UIViewController*);
+
 
 @end
 

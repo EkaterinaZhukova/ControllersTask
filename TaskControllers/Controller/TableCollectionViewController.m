@@ -110,45 +110,9 @@
 @implementation TableCollectionViewController(CustomCellProtocol)
 
 - (void)showNewViewController:(nonnull UIViewController *)newViewController {
-    
-    SelectedIndexViewController *vc = (SelectedIndexViewController*)newViewController;
-    __weak typeof(self) weakSelf = self;
-    __weak typeof(vc) weakVC = vc;
-    if(self.navigationController){
-        vc.onCloseBlock = ^{
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
+    if(self.onCreateSelectedIndex){
+        self.onCreateSelectedIndex(newViewController);
     }
-    else if(self.parentViewController){
-        
-        vc.onCloseBlock = ^{
-            [UIView animateWithDuration:1 animations:^{
-                [weakVC.view setFrame:CGRectMake(0, weakVC.view.frame.origin.y - weakVC.view.frame.size.height, weakVC.view.frame.size.width, weakVC.view.frame.size.height)];
-                
-            } completion:^(BOOL finished) {
-                [weakVC willMoveToParentViewController:nil];
-                [weakVC.view removeFromSuperview];
-                [weakVC removeFromParentViewController];
-            }];
-        };
-        [vc.view setFrame:CGRectMake(0, -vc.view.frame.size.height, vc.view.frame.size.width, vc.view.frame.size.height)];
-        [self addChildViewController:vc];
-        [self.view addSubview:vc.view];
-        [vc didMoveToParentViewController:self];
-        
-        [UIView animateWithDuration:1 animations:^{
-            [weakVC.view setFrame:CGRectMake(0, weakVC.view.frame.origin.y + weakVC.view.frame.size.height, weakVC.view.frame.size.width, weakVC.view.frame.size.height)];
-        }];
-        return;
-    }
-    vc.onCloseBlock = ^{
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    };
-
-   
-    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end

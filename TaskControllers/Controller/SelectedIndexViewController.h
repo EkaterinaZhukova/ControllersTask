@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectedIndexViewController : UIViewController
+
 @property(nonatomic,copy) dispatch_block_t onCloseBlock;
 @property(strong,nonatomic) NSString * currentIndexCount;
-@property(strong,nonatomic) NSString * lol;
 
 @end
 
